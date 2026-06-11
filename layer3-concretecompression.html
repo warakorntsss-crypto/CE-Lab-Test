@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>กำลังอัดคอนกรีต · Compressive Strength</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--text:#1a1a1a;--muted:#6b7280;
+    --blue:#005bac;--blue-dark:#004486;--border:#e0e0e0;--soft:#f4f7fb;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:"Sarabun","Segoe UI",Tahoma,sans-serif;
+    color:var(--text);background:var(--soft);line-height:1.55;
+  }
+  /* ---- header ---- */
+  header.site{
+    background:var(--bg);border-bottom:3px solid var(--blue);
+    box-shadow:0 1px 4px rgba(0,0,0,.06);
+  }
+  .bar{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:16px;}
+  .logo{
+    width:46px;height:46px;border-radius:10px;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    font-weight:700;font-size:18px;flex:0 0 auto;
+  }
+  .titles h1{margin:0;font-size:1.15rem;font-weight:700;}
+  .titles p{margin:2px 0 0;font-size:.85rem;color:var(--muted);}
+  .titles{flex:1 1 auto;}
+  /* cart button top-right */
+  .cart-btn{
+    position:relative;display:inline-flex;align-items:center;gap:8px;
+    background:var(--blue);color:#fff;text-decoration:none;
+    padding:10px 16px;border-radius:10px;font-weight:600;font-size:.9rem;
+    flex:0 0 auto;transition:background .15s ease;
+  }
+  .cart-btn:hover{background:var(--blue-dark);}
+  .cart-badge{
+    position:absolute;top:-8px;right:-8px;
+    min-width:22px;height:22px;padding:0 6px;
+    background:#e23b3b;color:#fff;border-radius:999px;
+    font-size:.75rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    border:2px solid #fff;
+  }
+
+  main{max-width:1080px;margin:0 auto;padding:24px 24px 56px;}
+  .crumb{font-size:.88rem;color:var(--muted);margin-bottom:18px;}
+  .crumb a{color:var(--blue);text-decoration:none;}
+  .crumb a:hover{text-decoration:underline;}
+
+  .product{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:32px;
+    background:var(--bg);border:1px solid var(--border);
+    border-radius:16px;padding:26px;position:relative;
+  }
+  @media(max-width:760px){.product{grid-template-columns:1fr;}}
+  /* ISO 17025 accreditation badge (circular emblem) */
+  .iso-badge{position:absolute;top:14px;right:14px;width:60px;height:60px;z-index:2;}
+
+  /* ---- image gallery ---- */
+  .gallery .main-pic{
+    width:100%;aspect-ratio:4/3;border-radius:12px;
+    background:repeating-linear-gradient(45deg,#eef1f5,#eef1f5 12px,#e6eaef 12px,#e6eaef 24px);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-weight:700;font-size:1.2rem;
+    border:1px solid var(--border);
+  }
+  .thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;}
+  .thumb{
+    width:64px;height:64px;border-radius:8px;border:1px solid var(--border);
+    background:#eef1f5;display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;
+    transition:border-color .15s ease;
+  }
+  .thumb:hover,.thumb.active{border-color:var(--blue);}
+
+  /* ---- buy panel ---- */
+  .buy h2{margin:0 0 4px;font-size:1.5rem;font-weight:700;}
+  .buy .sub{color:var(--muted);margin:0 0 6px;}
+  .code{font-size:.8rem;font-weight:600;color:var(--blue);letter-spacing:.5px;margin-bottom:14px;}
+
+  label.fld{display:block;font-weight:600;font-size:.92rem;margin:18px 0 6px;}
+  select{
+    width:100%;padding:11px 12px;border:1px solid var(--border);
+    border-radius:9px;font-family:inherit;font-size:.95rem;background:#fff;color:var(--text);
+  }
+  select:focus{outline:2px solid var(--blue);outline-offset:1px;}
+
+  .price-row{
+    display:flex;align-items:baseline;gap:8px;margin:18px 0 4px;
+    padding:14px 16px;background:var(--soft);border-radius:10px;
+  }
+  .price-row .label{font-size:.9rem;color:var(--muted);}
+  .price-row .price{font-size:1.4rem;font-weight:700;color:var(--blue);}
+  .price-row .unit{font-size:.85rem;color:var(--muted);}
+
+  /* qty stepper */
+  .qty-wrap{display:flex;align-items:center;gap:16px;margin:18px 0 6px;}
+  .stepper{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  .stepper button{
+    width:42px;height:42px;border:none;background:#fff;color:var(--blue);
+    font-size:1.3rem;font-weight:700;cursor:pointer;
+  }
+  .stepper button:hover{background:var(--soft);}
+  .stepper input{
+    width:56px;height:42px;border:none;border-left:1px solid var(--border);
+    border-right:1px solid var(--border);text-align:center;font-size:1rem;font-family:inherit;
+  }
+  .stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+
+  .total-row{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin:18px 0;padding-top:16px;border-top:1px dashed var(--border);
+  }
+  .total-row .t-label{font-weight:600;}
+  .total-row .t-val{font-size:1.6rem;font-weight:700;color:var(--text);}
+
+  .addcart{
+    width:100%;padding:14px;border:none;border-radius:11px;
+    background:var(--blue);color:#fff;font-family:inherit;font-size:1rem;font-weight:700;
+    cursor:pointer;transition:background .15s ease;
+  }
+  .addcart:hover{background:var(--blue-dark);}
+  .addcart:disabled{background:#aab3bd;cursor:not-allowed;}
+
+  .toast{
+    position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+    background:#1f2937;color:#fff;padding:12px 22px;border-radius:10px;
+    font-weight:600;font-size:.92rem;opacity:0;pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;z-index:50;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  footer.site{border-top:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.85rem;margin-top:40px;}
+  .foot{max-width:1080px;margin:0 auto;padding:18px 24px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <div class="logo">CE</div>
+    <div class="titles">
+      <h1>ศูนย์บริการทดสอบวัสดุทางวิศวกรรม</h1>
+      <p>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+    </div>
+    <a class="cart-btn" href="layer4.html">
+      🛒 ตะกร้า
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="crumb">
+    <a href="layer1.html">หน้าหลัก</a> &nbsp;›&nbsp;
+    <a href="layer2-concrete.html">หมวด 1 · คอนกรีตและวัสดุก่อ</a> &nbsp;›&nbsp;
+    กำลังอัดคอนกรีต
+  </div>
+
+  <div class="product">
+    <svg class="iso-badge" viewBox="0 0 60 60" role="img" aria-label="ISO 17025 accredited">
+      <circle cx="30" cy="24" r="19" fill="#fff" stroke="#005bac" stroke-width="1.5"/>
+      <g stroke="#005bac" stroke-width="0.7" fill="none">
+        <line x1="12" y1="18" x2="48" y2="18"/><line x1="11" y1="24" x2="49" y2="24"/>
+        <line x1="12" y1="30" x2="48" y2="30"/><line x1="30" y1="5" x2="30" y2="43"/>
+        <ellipse cx="30" cy="24" rx="7" ry="19"/><ellipse cx="30" cy="24" rx="13.5" ry="19"/>
+      </g>
+      <rect x="12" y="17" width="36" height="14" fill="#fff" opacity="0.78"/>
+      <text x="30" y="29" text-anchor="middle" font-family="Sarabun,Arial,sans-serif" font-size="15" font-weight="800" fill="#005bac">ISO</text>
+      <text x="30" y="55" text-anchor="middle" font-family="Sarabun,Arial,sans-serif" font-size="8.5" font-weight="700" fill="#005bac">ISO 17025</text>
+    </svg>
+
+    <!-- gallery -->
+    <div class="gallery">
+      <div class="main-pic" id="mainPic">pic1</div>
+      <div class="thumbs" id="thumbs">
+        <div class="thumb active" data-pic="pic1">pic1</div>
+        <div class="thumb" data-pic="pic2">pic2</div>
+        <div class="thumb" data-pic="pic3">pic3</div>
+        <div class="thumb" data-pic="pic4">pic4</div>
+        <div class="thumb" data-pic="pic5">pic5</div>
+      </div>
+    </div>
+
+    <!-- buy panel -->
+    <div class="buy">
+      <div class="code">CE-1.1</div>
+      <h2>กำลังอัดคอนกรีต</h2>
+      <p class="sub">Compressive Strength Test of Concrete</p>
+
+      <label class="fld" for="variant">เลือกรูปแบบการทดสอบ</label>
+      <select id="variant">
+        <option value="" data-price="">— กรุณาเลือกรูปแบบ —</option>
+        <option value="cube" data-price="150">Standard cube 15 cm — 150 บาท/ก้อน</option>
+        <option value="cyl" data-price="300">Standard cylinder 15×30 cm — 300 บาท/ก้อน</option>
+      </select>
+
+      <div class="price-row">
+        <span class="label">ราคาต่อหน่วย</span>
+        <span class="price" id="unitPrice">—</span>
+        <span class="unit" id="unitText"></span>
+      </div>
+
+      <label class="fld">จำนวน</label>
+      <div class="qty-wrap">
+        <div class="stepper">
+          <button type="button" id="minus">−</button>
+          <input type="number" id="qty" value="1" min="1" inputmode="numeric">
+          <button type="button" id="plus">+</button>
+        </div>
+        <span class="unit" id="qtyUnit"></span>
+      </div>
+
+      <div class="total-row">
+        <span class="t-label">ราคารวม</span>
+        <span class="t-val" id="total">0.00 บาท</span>
+      </div>
+
+      <button class="addcart" id="addBtn" disabled>เพิ่มลงตะกร้า</button>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast" id="toast">เพิ่มลงตะกร้าแล้ว</div>
+
+<footer class="site">
+  <div class="foot">ราคา = บาท (อัตราปกติ ตามบัญชี ร1/2568) · ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+</footer>
+
+<script>
+  // ---- elements ----
+  var variant   = document.getElementById('variant');
+  var unitPrice = document.getElementById('unitPrice');
+  var unitText  = document.getElementById('unitText');
+  var qtyUnit   = document.getElementById('qtyUnit');
+  var qty       = document.getElementById('qty');
+  var totalEl   = document.getElementById('total');
+  var addBtn    = document.getElementById('addBtn');
+  var badge     = document.getElementById('cartBadge');
+  var toast     = document.getElementById('toast');
+
+  var UNIT_LABEL = { cube:'/ก้อน', cyl:'/ก้อน' };
+
+  function fmt(n){ return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function selPrice(){
+    var o = variant.options[variant.selectedIndex];
+    var p = o.getAttribute('data-price');
+    return p ? parseFloat(p) : 0;
+  }
+
+  function refresh(){
+    var p = selPrice();
+    var q = parseInt(qty.value,10) || 0;
+    if(p>0){
+      unitPrice.textContent = fmt(p) + ' บาท';
+      var u = UNIT_LABEL[variant.value] || '';
+      unitText.textContent = u;
+      qtyUnit.textContent  = u ? ('หน่วย: ' + u.replace('/','')) : '';
+      totalEl.textContent  = fmt(p*q) + ' บาท';
+      addBtn.disabled = false;
+    } else {
+      unitPrice.textContent = '—';
+      unitText.textContent  = '';
+      qtyUnit.textContent   = '';
+      totalEl.textContent   = '0.00 บาท';
+      addBtn.disabled = true;
+    }
+  }
+
+  // ---- qty stepper ----
+  document.getElementById('plus').onclick  = function(){ qty.value = (parseInt(qty.value,10)||0)+1; refresh(); };
+  document.getElementById('minus').onclick = function(){ var v=(parseInt(qty.value,10)||1)-1; qty.value = v<1?1:v; refresh(); };
+  qty.addEventListener('input', function(){ if((parseInt(qty.value,10)||0)<1) qty.value=1; refresh(); });
+  variant.addEventListener('change', refresh);
+
+  // ---- cart (localStorage) ----
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('labCart')||'[]'); }catch(e){ return []; } }
+  function saveCart(c){ localStorage.setItem('labCart', JSON.stringify(c)); }
+  function cartCount(){ return getCart().length; } // number of test items (list), not sample qty
+  function updateBadge(){ badge.textContent = cartCount(); }
+
+  addBtn.onclick = function(){
+    var p = selPrice(); if(p<=0) return;
+    var q = parseInt(qty.value,10)||1;
+    var o = variant.options[variant.selectedIndex];
+    var cart = getCart();
+    cart.push({
+      code:'CE-1.1',
+      name:'กำลังอัดคอนกรีต',
+      variant:o.text.split(' — ')[0],
+      unitPrice:p,
+      qty:q,
+      lineTotal:p*q
+    });
+    saveCart(cart);
+    updateBadge();
+    showToast();
+  };
+
+  var toastTimer;
+  function showToast(){
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+
+  // ---- thumbnail switch ----
+  document.getElementById('thumbs').addEventListener('click', function(e){
+    var t = e.target.closest('.thumb'); if(!t) return;
+    document.querySelectorAll('.thumb').forEach(function(el){ el.classList.remove('active'); });
+    t.classList.add('active');
+    document.getElementById('mainPic').textContent = t.getAttribute('data-pic');
+  });
+
+  // init
+  updateBadge();
+  refresh();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ชำระเงิน · Checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--text:#1a1a1a;--muted:#6b7280;
+    --blue:#005bac;--blue-dark:#004486;--border:#e0e0e0;--soft:#f4f7fb;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Sarabun","Segoe UI",Tahoma,sans-serif;color:var(--text);background:var(--soft);line-height:1.55;}
+  header.site{background:var(--bg);border-bottom:3px solid var(--blue);box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  .bar{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:16px;}
+  .logo{width:46px;height:46px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;flex:0 0 auto;}
+  .titles h1{margin:0;font-size:1.15rem;font-weight:700;}
+  .titles p{margin:2px 0 0;font-size:.85rem;color:var(--muted);}
+
+  main{max-width:680px;margin:0 auto;padding:26px 24px 56px;}
+  .back{display:inline-block;color:var(--blue);text-decoration:none;font-weight:600;font-size:.95rem;margin-bottom:14px;}
+  .back:hover{text-decoration:underline;}
+  .page-title{font-size:1.5rem;font-weight:700;margin:0 0 22px;}
+
+  .card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:22px;}
+  .card h3{margin:0 0 16px;font-size:1.1rem;font-weight:700;border-left:4px solid var(--blue);padding-left:10px;}
+
+  .sum-row{display:flex;justify-content:space-between;padding:7px 0;font-size:.95rem;color:var(--muted);}
+  .sum-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:14px;border-top:2px dashed var(--border);}
+  .sum-total .lbl{font-weight:700;font-size:1.05rem;}
+  .sum-total .val{font-size:1.7rem;font-weight:700;color:var(--blue);}
+
+  .pay{display:flex;flex-direction:column;gap:12px;}
+  .pay label{
+    display:flex;align-items:center;gap:12px;padding:14px 16px;
+    border:1.5px solid var(--border);border-radius:11px;cursor:pointer;font-size:.98rem;font-weight:600;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .pay label:hover{border-color:var(--blue);background:var(--soft);}
+  .pay input:checked + .pm{color:var(--blue);}
+  .pay .pm-ico{width:34px;height:34px;border-radius:8px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+
+  .confirm{
+    width:100%;padding:15px;border:none;border-radius:12px;background:var(--blue);
+    color:#fff;font-family:inherit;font-size:1.05rem;font-weight:700;cursor:pointer;transition:background .15s ease;
+  }
+  .confirm:hover{background:var(--blue-dark);}
+
+  .done{display:none;text-align:center;padding:50px 20px;}
+  .done.show{display:block;}
+  .done .tick{width:64px;height:64px;border-radius:50%;background:#16a34a;color:#fff;font-size:2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+  .done .big{font-size:1.3rem;font-weight:700;margin:0 0 6px;}
+  .done p{margin:0;color:var(--muted);}
+
+  footer.site{border-top:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.85rem;}
+  .foot{max-width:1080px;margin:0 auto;padding:18px 24px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <div class="logo">CE</div>
+    <div class="titles">
+      <h1>ศูนย์บริการทดสอบวัสดุทางวิศวกรรม</h1>
+      <p>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <a class="back" href="layer4.html">← กลับไปตะกร้า</a>
+  <h2 class="page-title">ชำระเงิน</h2>
+
+  <div id="checkoutView">
+    <!-- summary -->
+    <div class="card">
+      <h3>สรุปคำสั่งซื้อ</h3>
+      <div class="sum-row"><span>จำนวนรายการทดสอบ</span><span id="itemCount">0 รายการ</span></div>
+      <div class="sum-row"><span>จำนวนตัวอย่างรวม</span><span id="sampleCount">0 ตัวอย่าง</span></div>
+      <div class="sum-total"><span class="lbl">ยอดชำระทั้งสิ้น</span><span class="val"><span id="payTotal">0.00</span> บาท</span></div>
+    </div>
+
+    <!-- payment method -->
+    <div class="card">
+      <h3>เลือกวิธีการชำระเงิน</h3>
+      <div class="pay">
+        <label><input type="radio" name="pm" checked><span class="pm-ico">🏦</span><span class="pm">โอนเงินผ่านธนาคาร</span></label>
+        <label><input type="radio" name="pm"><span class="pm-ico">📱</span><span class="pm">พร้อมเพย์ / QR Code</span></label>
+        <label><input type="radio" name="pm"><span class="pm-ico">💳</span><span class="pm">บัตรเครดิต / เดบิต</span></label>
+        <label><input type="radio" name="pm"><span class="pm-ico">🏢</span><span class="pm">วางบิล / เงินเชื่อ (หน่วยงานราชการ)</span></label>
+      </div>
+    </div>
+
+    <button class="confirm" id="confirmBtn">ยืนยันการชำระเงิน</button>
+  </div>
+
+  <!-- success -->
+  <div class="done" id="doneView">
+    <div class="tick">✓</div>
+    <p class="big">ส่งคำสั่งทดสอบเรียบร้อย</p>
+    <p>เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันรายละเอียดและการชำระเงิน</p>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="foot">ราคา = บาท (อัตราปกติ ตามบัญชี ร1/2568) · ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+</footer>
+
+<script>
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('labCart')||'[]'); }catch(e){ return []; } }
+  function fmt(n){ return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  var cart = getCart();
+  var total = cart.reduce(function(s,i){ return s + i.lineTotal; }, 0);
+  var samples = cart.reduce(function(s,i){ return s + i.qty; }, 0);
+
+  document.getElementById('itemCount').textContent   = cart.length + ' รายการ';
+  document.getElementById('sampleCount').textContent = samples + ' ตัวอย่าง';
+  document.getElementById('payTotal').textContent    = fmt(total);
+
+  document.getElementById('confirmBtn').onclick = function(){
+    localStorage.removeItem('labCart'); // clear cart after order
+    document.getElementById('checkoutView').style.display = 'none';
+    document.getElementById('doneView').classList.add('show');
+  };
+</script>
+
+</body>
+</html>

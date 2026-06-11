@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ศูนย์บริการทดสอบวัสดุ · ภาควิชาวิศวกรรมโยธา มช.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --text:#1a1a1a;
+    --muted:#6b7280;
+    --blue:#005bac;
+    --blue-dark:#004486;
+    --border:#e0e0e0;
+    --card-bg:#ffffff;
+    --soft:#f4f7fb;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Sarabun","Segoe UI",Tahoma,sans-serif;
+    color:var(--text);
+    background:var(--soft);
+    line-height:1.55;
+  }
+  /* ---- Header ---- */
+  header.site{
+    background:var(--bg);
+    border-bottom:3px solid var(--blue);
+    box-shadow:0 1px 4px rgba(0,0,0,.06);
+  }
+  .bar{
+    max-width:1080px;
+    margin:0 auto;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .logo{
+    width:46px;height:46px;border-radius:10px;
+    background:var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:700;font-size:18px;flex:0 0 auto;
+  }
+  .titles h1{margin:0;font-size:1.15rem;font-weight:700;}
+  .titles p{margin:2px 0 0;font-size:.85rem;color:var(--muted);}
+
+  /* ---- Main ---- */
+  main{max-width:1080px;margin:0 auto;padding:32px 24px 56px;}
+  .section-title{
+    font-size:1.35rem;font-weight:700;margin:0 0 4px;
+  }
+  .section-sub{color:var(--muted);margin:0 0 26px;font-size:.95rem;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+  }
+  /* ---- Card ---- */
+  .card{
+    display:flex;flex-direction:column;
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-top:4px solid var(--blue);
+    border-radius:12px;
+    padding:22px 22px 20px;
+    text-decoration:none;
+    color:inherit;
+    min-height:148px;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    position:relative;
+  }
+  a.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 22px rgba(0,91,172,.16);
+    border-color:var(--blue);
+  }
+  .card .num{
+    font-size:.78rem;font-weight:600;color:var(--blue);
+    letter-spacing:.5px;margin-bottom:6px;
+  }
+  .card .th{font-size:1.12rem;font-weight:700;margin:0 0 4px;}
+  .card .en{font-size:.88rem;color:var(--muted);margin:0;}
+  .card .count{
+    display:inline-block;margin:10px 0 0;
+    background:var(--soft);color:var(--blue);
+    font-size:.8rem;font-weight:600;
+    padding:3px 10px;border-radius:999px;
+  }
+  .card.soon .count{color:var(--muted);background:#eef1f4;}
+  .card .go{
+    margin-top:auto;padding-top:14px;
+    font-size:.9rem;font-weight:600;color:var(--blue);
+  }
+  /* disabled / coming soon */
+  .card.soon{
+    border-top-color:#c7ccd1;
+    background:#fafbfc;
+    cursor:not-allowed;
+    opacity:.85;
+  }
+  .card.soon .num{color:var(--muted);}
+  .tag{
+    position:absolute;top:14px;right:14px;
+    background:#eef1f4;color:var(--muted);
+    font-size:.72rem;font-weight:600;
+    padding:3px 9px;border-radius:999px;
+  }
+  .card.soon .go{color:var(--muted);}
+
+  footer.site{
+    border-top:1px solid var(--border);
+    background:var(--bg);
+    color:var(--muted);
+    font-size:.85rem;
+  }
+  .foot{max-width:1080px;margin:0 auto;padding:18px 24px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <div class="logo">CE</div>
+    <div class="titles">
+      <h1>ศูนย์บริการทดสอบวัสดุทางวิศวกรรม</h1>
+      <p>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h2 class="section-title">หมวดรายการทดสอบ</h2>
+  <p class="section-sub">เลือกหมวดเพื่อดูรายการทดสอบและอัตราค่าบริการ</p>
+
+  <div class="grid">
+
+    <!-- หมวด 1 — active -->
+    <a class="card" href="layer2-concrete.html">
+      <div class="num">หมวด 1</div>
+      <p class="th">คอนกรีตและวัสดุก่อ</p>
+      <p class="en">Concrete &amp; Masonry</p>
+      <span class="count">11 รายการ</span>
+      <div class="go">ดูรายการทดสอบ →</div>
+    </a>
+
+    <!-- หมวด 2 — active -->
+    <a class="card" href="layer2-steel.html">
+      <div class="num">หมวด 2</div>
+      <p class="th">เหล็ก ลวด และสลิง</p>
+      <p class="en">Steel, Wire &amp; Rope</p>
+      <span class="count">14 รายการ</span>
+      <div class="go">ดูรายการทดสอบ →</div>
+    </a>
+
+    <!-- หมวด 3 — coming soon -->
+    <div class="card soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="num">หมวด 3</div>
+      <p class="th">มวลรวม หิน-ทราย</p>
+      <p class="en">Fine &amp; Coarse Aggregate</p>
+      <span class="count">11 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <!-- หมวด 4 — coming soon -->
+    <div class="card soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="num">หมวด 4</div>
+      <p class="th">ดินและงานปฐพี / เจาะสำรวจ</p>
+      <p class="en">Soil &amp; Geotechnical</p>
+      <span class="count">32 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <!-- หมวด 5 — coming soon -->
+    <div class="card soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="num">หมวด 5</div>
+      <p class="th">แอสฟัลต์และงานทาง</p>
+      <p class="en">Asphalt &amp; Highway</p>
+      <span class="count">24 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <!-- หมวด 6 — coming soon -->
+    <div class="card soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="num">หมวด 6</div>
+      <p class="th">บริการอื่น / ไม่จำเพาะวัสดุ</p>
+      <p class="en">Calibration &amp; Services</p>
+      <span class="count">3 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="foot">ราคา = บาท (อัตราปกติ ตามบัญชี ร1/2568) · ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+</footer>
+
+</body>
+</html>

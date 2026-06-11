@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>หมวด 1 · คอนกรีตและวัสดุก่อ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--text:#1a1a1a;--muted:#6b7280;
+    --blue:#005bac;--border:#e0e0e0;--soft:#f4f7fb;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:"Sarabun","Segoe UI",Tahoma,sans-serif;
+    color:var(--text);background:var(--soft);line-height:1.55;
+  }
+  header.site{
+    background:var(--bg);border-bottom:3px solid var(--blue);
+    box-shadow:0 1px 4px rgba(0,0,0,.06);
+  }
+  .bar{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:16px;}
+  .logo{
+    width:46px;height:46px;border-radius:10px;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    font-weight:700;font-size:18px;flex:0 0 auto;
+  }
+  .titles h1{margin:0;font-size:1.15rem;font-weight:700;}
+  .titles p{margin:2px 0 0;font-size:.85rem;color:var(--muted);}
+
+  main{max-width:1080px;margin:0 auto;padding:28px 24px 56px;}
+  .back{
+    display:inline-block;color:var(--blue);text-decoration:none;
+    font-weight:600;font-size:.95rem;margin-bottom:18px;
+  }
+  .back:hover{text-decoration:underline;}
+  .page-title{font-size:1.5rem;font-weight:700;margin:0 0 6px;}
+  .page-sub{color:var(--muted);margin:0 0 10px;}
+  .count-head{
+    display:inline-block;margin:0 0 4px;
+    background:var(--soft);color:var(--blue);
+    font-size:.85rem;font-weight:600;
+    padding:4px 12px;border-radius:999px;
+  }
+
+  /* ---- sub-category heading ---- */
+  .subcat{
+    margin:34px 0 16px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--border);
+    display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  }
+  .subcat h3{margin:0;font-size:1.15rem;font-weight:700;}
+  .subcat .sc-count{font-size:.88rem;color:var(--muted);font-weight:500;}
+
+  /* ---- box grid ---- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:18px;
+  }
+  .box{
+    display:flex;flex-direction:column;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-left:4px solid var(--blue);
+    border-radius:10px;
+    padding:18px 18px 16px;
+    text-decoration:none;color:inherit;
+    min-height:128px;position:relative;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .box:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,91,172,.14);
+  }
+  /* ISO 17025 accreditation badge (circular emblem) */
+  .iso-badge{position:absolute;top:10px;right:10px;width:52px;height:52px;}
+  .box .code{font-size:.74rem;font-weight:600;color:var(--blue);letter-spacing:.5px;margin-bottom:6px;}
+  .box .name{font-size:1.05rem;font-weight:700;margin:0 0 4px;}
+  .box .desc{font-size:.85rem;color:var(--muted);margin:0;}
+  .box .count{
+    display:inline-block;margin-top:12px;
+    background:var(--soft);color:var(--blue);
+    font-size:.8rem;font-weight:600;
+    padding:3px 10px;border-radius:999px;align-self:flex-start;
+  }
+  .box .go{margin-top:auto;padding-top:12px;font-size:.88rem;font-weight:600;color:var(--blue);}
+  /* disabled / coming soon */
+  .box.soon{
+    border-left-color:#c7ccd1;background:#fafbfc;cursor:not-allowed;opacity:.85;position:relative;
+  }
+  .box.soon:hover{transform:none;box-shadow:none;}
+  .box.soon .code,.box.soon .count,.box.soon .go{color:var(--muted);}
+  .box.soon .count{background:#eef1f4;}
+  .box .tag{
+    position:absolute;top:14px;right:14px;background:#eef1f4;color:var(--muted);
+    font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:999px;
+  }
+
+  footer.site{border-top:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.85rem;}
+  .foot{max-width:1080px;margin:0 auto;padding:18px 24px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <div class="logo">CE</div>
+    <div class="titles">
+      <h1>ศูนย์บริการทดสอบวัสดุทางวิศวกรรม</h1>
+      <p>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <a class="back" href="layer1.html">← กลับหน้าหลัก</a>
+  <h2 class="page-title">หมวด 1 · คอนกรีตและวัสดุก่อ</h2>
+  <p class="page-sub">Concrete &amp; Masonry</p>
+  <span class="count-head">รวม 11 รายการ · 7 ประเภททดสอบ</span>
+
+  <!-- หมวด 1 ไม่มีหมวดย่อย — มีกลุ่มรายการทดสอบเดียว -->
+  <div class="subcat">
+    <h3>รายการทดสอบ</h3>
+    <span class="sc-count">7 ประเภท · 11 รายการ</span>
+  </div>
+
+  <div class="grid">
+
+    <a class="box" href="layer3-concretecompression.html">
+      <svg class="iso-badge" viewBox="0 0 60 60" role="img" aria-label="ISO 17025 accredited">
+        <circle cx="30" cy="24" r="19" fill="#fff" stroke="#005bac" stroke-width="1.5"/>
+        <g stroke="#005bac" stroke-width="0.7" fill="none">
+          <line x1="12" y1="18" x2="48" y2="18"/><line x1="11" y1="24" x2="49" y2="24"/>
+          <line x1="12" y1="30" x2="48" y2="30"/><line x1="30" y1="5" x2="30" y2="43"/>
+          <ellipse cx="30" cy="24" rx="7" ry="19"/><ellipse cx="30" cy="24" rx="13.5" ry="19"/>
+        </g>
+        <rect x="12" y="17" width="36" height="14" fill="#fff" opacity="0.78"/>
+        <text x="30" y="29" text-anchor="middle" font-family="Sarabun,Arial,sans-serif" font-size="15" font-weight="800" fill="#005bac">ISO</text>
+        <text x="30" y="55" text-anchor="middle" font-family="Sarabun,Arial,sans-serif" font-size="8.5" font-weight="700" fill="#005bac">ISO 17025</text>
+      </svg>
+      <div class="code">1.1</div>
+      <p class="name">กำลังอัดคอนกรีต</p>
+      <p class="desc">Compressive strength — cube / cylinder</p>
+      <span class="count">2 รายการ</span>
+      <div class="go">ดูรายละเอียด →</div>
+    </a>
+
+    <div class="box soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="code">1.2</div>
+      <p class="name">ดัดคานคอนกรีต</p>
+      <p class="desc">Flexure 15×15×60 cm</p>
+      <span class="count">1 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <div class="box soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="code">1.3</div>
+      <p class="name">บล็อก (Block)</p>
+      <p class="desc">Compressive strength / Water absorption</p>
+      <span class="count">2 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <div class="box soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="code">1.4</div>
+      <p class="name">อิฐมอญกลวงไม่รับน้ำหนัก</p>
+      <p class="desc">Non-load-bearing hollow brick</p>
+      <span class="count">1 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <div class="box soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="code">1.5</div>
+      <p class="name">ท่อคอนกรีต</p>
+      <p class="desc">φ 30–120 cm (3 ขนาด)</p>
+      <span class="count">3 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <div class="box soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="code">1.6</div>
+      <p class="name">แผ่นพื้นสำเร็จรูป</p>
+      <p class="desc">ทดสอบรับน้ำหนัก</p>
+      <span class="count">1 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+    <div class="box soon" aria-disabled="true">
+      <span class="tag">เร็วๆ นี้</span>
+      <div class="code">1.7</div>
+      <p class="name">Schmidt Hammer</p>
+      <p class="desc">ทดสอบกำลังอัดแบบไม่ทำลาย</p>
+      <span class="count">1 รายการ</span>
+      <div class="go">อยู่ระหว่างจัดทำ</div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="foot">ราคา = บาท (อัตราปกติ ตามบัญชี ร1/2568) · ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+</footer>
+
+</body>
+</html>

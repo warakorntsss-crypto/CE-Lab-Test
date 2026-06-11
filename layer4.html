@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ตะกร้ารายการ · สรุปคำสั่งทดสอบ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;--text:#1a1a1a;--muted:#6b7280;
+    --blue:#005bac;--blue-dark:#004486;--border:#e0e0e0;--soft:#f4f7fb;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Sarabun","Segoe UI",Tahoma,sans-serif;color:var(--text);background:var(--soft);line-height:1.55;}
+  header.site{background:var(--bg);border-bottom:3px solid var(--blue);box-shadow:0 1px 4px rgba(0,0,0,.06);}
+  .bar{max-width:1080px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:16px;}
+  .logo{width:46px;height:46px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;flex:0 0 auto;}
+  .titles h1{margin:0;font-size:1.15rem;font-weight:700;}
+  .titles p{margin:2px 0 0;font-size:.85rem;color:var(--muted);}
+  .titles{flex:1 1 auto;}
+  .hdr-total{font-size:.95rem;color:var(--muted);font-weight:600;}
+  .hdr-total b{color:var(--blue);font-size:1.1rem;}
+
+  main{max-width:1080px;margin:0 auto;padding:26px 24px 56px;}
+  .back{display:inline-block;color:var(--blue);text-decoration:none;font-weight:600;font-size:.95rem;margin-bottom:14px;}
+  .back:hover{text-decoration:underline;}
+  .page-title{font-size:1.5rem;font-weight:700;margin:0 0 22px;}
+
+  .card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:22px;}
+  .card h3{margin:0 0 14px;font-size:1.1rem;font-weight:700;border-left:4px solid var(--blue);padding-left:10px;}
+
+  table{width:100%;border-collapse:collapse;}
+  thead th{
+    text-align:left;font-size:.82rem;color:var(--muted);font-weight:600;
+    padding:8px 10px;border-bottom:2px solid var(--border);white-space:nowrap;
+  }
+  tbody td{padding:12px 10px;border-bottom:1px solid var(--border);font-size:.92rem;vertical-align:middle;}
+  th.num,td.num{text-align:right;}
+  th.ctr,td.ctr{text-align:center;}
+  .it-name{font-weight:700;}
+  .it-variant{font-size:.84rem;color:var(--muted);}
+  .it-code{font-size:.74rem;color:var(--blue);font-weight:600;}
+  .rm{background:none;border:none;color:#e23b3b;font-size:1.1rem;cursor:pointer;font-weight:700;line-height:1;}
+  .rm:hover{color:#b81f1f;}
+  .empty{padding:40px;text-align:center;color:var(--muted);}
+  .grand{display:flex;justify-content:flex-end;align-items:baseline;gap:14px;margin-top:16px;padding-top:14px;border-top:2px dashed var(--border);}
+  .grand .lbl{font-weight:600;}
+  .grand .val{font-size:1.5rem;font-weight:700;color:var(--blue);}
+
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:640px){.fgrid{grid-template-columns:1fr;}}
+  label.fld{display:block;font-weight:600;font-size:.88rem;margin-bottom:5px;}
+  input[type=text],input[type=email],input[type=tel],textarea{
+    width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;
+    font-family:inherit;font-size:.95rem;background:#fff;color:var(--text);
+  }
+  input:focus,textarea:focus{outline:2px solid var(--blue);outline-offset:1px;}
+  textarea{resize:vertical;min-height:80px;}
+  .full{grid-column:1 / -1;}
+  .radio-row{display:flex;flex-wrap:wrap;gap:18px;}
+  .radio-row label{display:flex;align-items:center;gap:8px;font-size:.95rem;cursor:pointer;}
+  .chk-line{display:flex;align-items:center;gap:9px;margin-bottom:6px;font-size:.95rem;cursor:pointer;}
+  .tax-fields{margin-top:12px;display:none;}
+  .tax-fields.show{display:block;}
+
+  .actions{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px;}
+  .btn{padding:13px 24px;border-radius:11px;font-family:inherit;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;}
+  .btn-add{background:#fff;color:var(--blue);border:1.5px solid var(--blue);}
+  .btn-add:hover{background:var(--soft);}
+  .btn-checkout{background:var(--blue);color:#fff;}
+  .btn-checkout:hover{background:var(--blue-dark);}
+  .btn-checkout.disabled{background:#aab3bd;cursor:not-allowed;pointer-events:none;}
+
+  footer.site{border-top:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.85rem;}
+  .foot{max-width:1080px;margin:0 auto;padding:18px 24px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="bar">
+    <div class="logo">CE</div>
+    <div class="titles">
+      <h1>ศูนย์บริการทดสอบวัสดุทางวิศวกรรม</h1>
+      <p>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
+    </div>
+    <div class="hdr-total">รวม : <b id="hdrTotal">0.00</b> บาท</div>
+  </div>
+</header>
+
+<main>
+  <a class="back" href="layer1.html">← เลือกซื้อต่อ</a>
+  <h2 class="page-title">ตะกร้ารายการ · สรุปคำสั่งทดสอบ</h2>
+
+  <!-- ===== recap ===== -->
+  <div class="card">
+    <h3>รายการทดสอบที่เลือก</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>รายการทดสอบ</th>
+          <th class="ctr">จำนวนตัวอย่าง</th>
+          <th class="num">ราคา/หน่วย</th>
+          <th class="num">ราคารวม</th>
+          <th class="ctr">ลบ</th>
+        </tr>
+      </thead>
+      <tbody id="cartBody"><!-- JS --></tbody>
+    </table>
+    <div id="emptyMsg" class="empty" style="display:none;">ยังไม่มีรายการในตะกร้า</div>
+    <div class="grand">
+      <span class="lbl">ราคารวมทั้งสิ้น</span>
+      <span class="val"><span id="grandTotal">0.00</span> บาท</span>
+    </div>
+  </div>
+
+  <!-- ===== additional details ===== -->
+  <div class="card">
+    <h3>รายละเอียดรายการเพิ่มเติม</h3>
+    <textarea placeholder="ระบุรายละเอียดเพิ่มเติม เช่น มาตรฐานที่ใช้ทดสอบ อายุคอนกรีต ฯลฯ"></textarea>
+  </div>
+
+  <!-- ===== contact info ===== -->
+  <div class="card">
+    <h3>ข้อมูลผู้ติดต่อ</h3>
+    <div class="fgrid">
+      <div class="full"><label class="fld">ชื่อ - นามสกุล</label><input type="text" placeholder="ชื่อ - นามสกุล"></div>
+      <div><label class="fld">อีเมล</label><input type="email" placeholder="example@email.com"></div>
+      <div><label class="fld">เบอร์โทรศัพท์</label><input type="tel" placeholder="08x-xxx-xxxx"></div>
+      <div class="full"><label class="fld">หน่วยงาน / บริษัท</label><input type="text" placeholder="ชื่อหน่วยงาน (ถ้ามี)"></div>
+    </div>
+  </div>
+
+  <!-- ===== tax invoice ===== -->
+  <div class="card">
+    <h3>ข้อมูลใบกำกับภาษี</h3>
+    <label class="chk-line"><input type="checkbox" id="taxChk"> ต้องการใบกำกับภาษี</label>
+    <div class="tax-fields" id="taxFields">
+      <div class="fgrid">
+        <div class="full"><label class="fld">ชื่อผู้เสียภาษี / บริษัท</label><input type="text"></div>
+        <div><label class="fld">เลขประจำตัวผู้เสียภาษี</label><input type="text" placeholder="13 หลัก"></div>
+        <div><label class="fld">สาขา</label><input type="text" placeholder="สำนักงานใหญ่"></div>
+        <div class="full"><label class="fld">ที่อยู่สำหรับออกใบกำกับภาษี</label><textarea></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== delivery method ===== -->
+  <div class="card">
+    <h3>วิธีรับผลการทดสอบ</h3>
+    <div class="radio-row">
+      <label><input type="radio" name="delivery" checked> รับทางอีเมล</label>
+      <label><input type="radio" name="delivery"> มารับด้วยตนเอง</label>
+      <label><input type="radio" name="delivery"> จัดส่งทางไปรษณีย์</label>
+    </div>
+  </div>
+
+  <!-- ===== actions ===== -->
+  <div class="actions">
+    <a class="btn btn-add" href="layer1.html">+ เพิ่มรายการ</a>
+    <a class="btn btn-checkout" id="checkoutBtn" href="layer5.html">ชำระเงิน →</a>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="foot">ราคา = บาท (อัตราปกติ ตามบัญชี ร1/2568) · ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
+</footer>
+
+<script>
+  function getCart(){ try{ return JSON.parse(localStorage.getItem('labCart')||'[]'); }catch(e){ return []; } }
+  function saveCart(c){ localStorage.setItem('labCart', JSON.stringify(c)); }
+  function fmt(n){ return n.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  var body = document.getElementById('cartBody');
+  var emptyMsg = document.getElementById('emptyMsg');
+  var checkoutBtn = document.getElementById('checkoutBtn');
+
+  function render(){
+    var cart = getCart();
+    body.innerHTML = '';
+    var total = 0;
+    if(cart.length === 0){
+      emptyMsg.style.display = 'block';
+      checkoutBtn.classList.add('disabled');
+    } else {
+      emptyMsg.style.display = 'none';
+      checkoutBtn.classList.remove('disabled');
+      cart.forEach(function(it, idx){
+        total += it.lineTotal;
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td>'
+            + '<div class="it-code">'+it.code+'</div>'
+            + '<div class="it-name">'+it.name+'</div>'
+            + '<div class="it-variant">'+it.variant+'</div>'
+          + '</td>'
+          + '<td class="ctr">'+it.qty+'</td>'
+          + '<td class="num">'+fmt(it.unitPrice)+'</td>'
+          + '<td class="num">'+fmt(it.lineTotal)+'</td>'
+          + '<td class="ctr"><button class="rm" data-i="'+idx+'" title="ลบ">×</button></td>';
+        body.appendChild(tr);
+      });
+    }
+    document.getElementById('grandTotal').textContent = fmt(total);
+    document.getElementById('hdrTotal').textContent   = fmt(total);
+  }
+
+  body.addEventListener('click', function(e){
+    var btn = e.target.closest('.rm'); if(!btn) return;
+    var i = parseInt(btn.getAttribute('data-i'),10);
+    var cart = getCart();
+    cart.splice(i,1);
+    saveCart(cart);
+    render();
+  });
+
+  document.getElementById('taxChk').addEventListener('change', function(){
+    document.getElementById('taxFields').classList.toggle('show', this.checked);
+  });
+
+  render();
+</script>
+
+</body>
+</html>
