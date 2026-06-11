@@ -121,6 +121,23 @@
   }
   .foot{max-width:1080px;margin:0 auto;padding:18px 24px;}
 
+  /* ===== cart button (header) ===== */
+  .titles{flex:1 1 auto;}
+  .cart-btn{
+    position:relative;display:inline-flex;align-items:center;gap:8px;
+    background:var(--blue);color:#fff;text-decoration:none;
+    padding:10px 16px;border-radius:10px;font-weight:600;font-size:.9rem;
+    flex:0 0 auto;transition:background .15s ease;
+  }
+  .cart-btn:hover{background:#004486;}
+  .cart-badge{
+    position:absolute;top:-8px;right:-8px;
+    min-width:22px;height:22px;padding:0 6px;
+    background:#e23b3b;color:#fff;border-radius:999px;
+    font-size:.75rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;border:2px solid #fff;
+  }
+
   /* ===== diagonal SAMPLE watermark ===== */
   body::before{
     content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
@@ -154,6 +171,10 @@
       <h1>ศูนย์บริการทดสอบวัสดุทางวิศวกรรม</h1>
       <p>ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</p>
     </div>
+    <a class="cart-btn" href="layer4.html">
+      🛒 ตะกร้า
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
   </div>
 </header>
 
@@ -227,6 +248,13 @@
 <footer class="site">
   <div class="foot">ราคา = บาท (อัตราปกติ ตามบัญชี ร1/2568) · ภาควิชาวิศวกรรมโยธา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเชียงใหม่</div>
 </footer>
+
+<script>
+  (function(){
+    var c; try{ c = JSON.parse(localStorage.getItem('labCart')||'[]'); }catch(e){ c=[]; }
+    var b = document.getElementById('cartBadge'); if(b) b.textContent = c.length;
+  })();
+</script>
 
 </body>
 </html>
